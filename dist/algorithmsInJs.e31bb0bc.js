@@ -136,7 +136,7 @@ function eq(a, b) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LinkedList = void 0;
+exports.LinkedList = exports.Node = void 0;
 
 var _eq = _interopRequireDefault(require("../Eq/eq"));
 
@@ -167,6 +167,8 @@ var Node = function Node(element) {
   this.element = element;
   this.next = undefined;
 };
+
+exports.Node = Node;
 
 var LinkedList =
 /*#__PURE__*/
@@ -364,11 +366,73 @@ console.log('indexIs', linkedList.indexOf(4));
 console.log(linkedList.remove(5));
 console.log(linkedList.remove(3));
 console.log(linkedList.toString()); // console.log(linkedList)
-},{"../Eq/eq":"Eq/eq.js"}],"index.js":[function(require,module,exports) {
+},{"../Eq/eq":"Eq/eq.js"}],"DoubleList/index.js":[function(require,module,exports) {
 "use strict";
 
-require("./LinkedList/index");
-},{"./LinkedList/index":"LinkedList/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DoubleLinkedList = void 0;
+
+var _LinkedList2 = require("../LinkedList");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var DoubleNode =
+/*#__PURE__*/
+function (_Node) {
+  _inherits(DoubleNode, _Node);
+
+  function DoubleNode(element) {
+    var _this;
+
+    _classCallCheck(this, DoubleNode);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DoubleNode).call(this, element));
+    _this.previous = null;
+    return _this;
+  }
+
+  return DoubleNode;
+}(_LinkedList2.Node);
+
+var DoubleLinkedList =
+/*#__PURE__*/
+function (_LinkedList) {
+  _inherits(DoubleLinkedList, _LinkedList);
+
+  function DoubleLinkedList(eqFn) {
+    _classCallCheck(this, DoubleLinkedList);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(DoubleLinkedList).call(this, eqFn));
+  }
+
+  return DoubleLinkedList;
+}(_LinkedList2.LinkedList);
+
+exports.DoubleLinkedList = DoubleLinkedList;
+var doubleLinkedList = new DoubleLinkedList();
+doubleLinkedList.push(1);
+doubleLinkedList.push(3);
+doubleLinkedList.push(2);
+console.log(doubleLinkedList.toString());
+},{"../LinkedList":"LinkedList/index.js"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+require("./DoubleList/index");
+},{"./DoubleList/index":"DoubleList/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -396,7 +460,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55065" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60969" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,1 +1,2 @@
-import './LinkedList/index'
+// import './LinkedList/index'
+import './DoubleList/index'

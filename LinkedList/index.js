@@ -13,7 +13,7 @@ import eq from '../Eq/eq'
  * 
  * 
  */
-class Node {
+export class Node {
   constructor(element) {
     this.element = element
     this.next = undefined
