@@ -32,6 +32,7 @@ export class DoubleLinkedList extends LinkedList {
         }
         cur.next = node
         node.previous = cur
+        this.tail = node
       } else {
         const cur = this.head
         let last
@@ -52,24 +53,28 @@ export class DoubleLinkedList extends LinkedList {
   remove(index) {
     if(index >= 0 && index < this.count) {
       let cur = this.head
-      if(this.size() === 1) {
-        this.head = null
-        this.tail = null
-      } else if(this.size() === 0) {
-        return false
-      } else {
-        if(index === 0) {
-          this.head = cur.nex
-        } else if(index === this.count - 1) {
-          this.tail = this.tail.previous
+      if(index === 0) {
+        // 说明只有一个元素
+        if(this.count === 1) {
+          this.head = undefined
+          this.tail = undefined
         } else {
-          for(let i = 0; i < index; i++) {
-            const next = cur.next
-            const pre = cur.previous
-            pre.next = next
-            next.previous = pre
-          }
+          this.head = cur.next
+          this.head.previous = undefined
         }
+      } else if(index === this.count - 1) { // 删除最后一个元素
+        debugger
+        const pre = this.tail.previous
+        this.tail = pre
+        this.tail.next = undefined
+      } else { // 删除中间元素
+        for(let i = 0; i < index; i++) {
+          cur = cur.next          
+        }
+        const next = cur.next
+        const previous = cur.previous
+        previous.next = next
+        next.previous = previous
       }
       this.count--
     }
@@ -88,3 +93,7 @@ doubleLinkedList.insert(3,2)
 doubleLinkedList.insert(5,0)
 doubleLinkedList.insert(88,4)
 console.log(doubleLinkedList.toString())
+doubleLinkedList.remove(2)
+doubleLinkedList.remove(1)
+console.log(doubleLinkedList.toString())
+

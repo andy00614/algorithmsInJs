@@ -366,19 +366,20 @@ console.log('indexIs', linkedList.indexOf(4));
 console.log(linkedList.remove(5));
 console.log(linkedList.remove(3));
 console.log(linkedList.toString()); // console.log(linkedList)
-},{"../Eq/eq":"Eq/eq.js"}],"DoubleList/index.js":[function(require,module,exports) {
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.DoubleLinkedList = void 0;
+console.log('________________________________-');
+},{"../Eq/eq":"Eq/eq.js"}],"stackInLinkedList/index.js":[function(require,module,exports) {
+"use strict";
 
 var _LinkedList2 = require("../LinkedList");
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -390,49 +391,57 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var DoubleNode =
-/*#__PURE__*/
-function (_Node) {
-  _inherits(DoubleNode, _Node);
-
-  function DoubleNode(element) {
-    var _this;
-
-    _classCallCheck(this, DoubleNode);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DoubleNode).call(this, element));
-    _this.previous = null;
-    return _this;
-  }
-
-  return DoubleNode;
-}(_LinkedList2.Node);
-
-var DoubleLinkedList =
+var StackInLinkedList =
 /*#__PURE__*/
 function (_LinkedList) {
-  _inherits(DoubleLinkedList, _LinkedList);
+  _inherits(StackInLinkedList, _LinkedList);
 
-  function DoubleLinkedList(eqFn) {
-    _classCallCheck(this, DoubleLinkedList);
+  function StackInLinkedList() {
+    _classCallCheck(this, StackInLinkedList);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(DoubleLinkedList).call(this, eqFn));
+    return _possibleConstructorReturn(this, _getPrototypeOf(StackInLinkedList).apply(this, arguments));
   }
 
-  return DoubleLinkedList;
+  _createClass(StackInLinkedList, [{
+    key: "push",
+    value: function push(element) {
+      if (this.size() === 0) {
+        this.head = new _LinkedList2.Node(element);
+      } else {
+        var cur = this.head;
+
+        while (cur.next) {
+          cur = cur.next;
+        }
+
+        cur.next = new _LinkedList2.Node(element);
+      }
+
+      this.count++;
+    }
+  }, {
+    key: "pop",
+    value: function pop() {
+      this.removeAt(this.size() - 1);
+    }
+  }]);
+
+  return StackInLinkedList;
 }(_LinkedList2.LinkedList);
 
-exports.DoubleLinkedList = DoubleLinkedList;
-var doubleLinkedList = new DoubleLinkedList();
-doubleLinkedList.push(1);
-doubleLinkedList.push(3);
-doubleLinkedList.push(2);
-console.log(doubleLinkedList.toString());
+console.log('_______________stackLinedList________-');
+var stack = new StackInLinkedList();
+stack.push(2);
+stack.push(3);
+stack.push(1); // stack.pop()
+// stack.pop()
+
+console.log(stack.toString());
 },{"../LinkedList":"LinkedList/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-require("./DoubleList/index");
-},{"./DoubleList/index":"DoubleList/index.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+require("./stackInLinkedList");
+},{"./stackInLinkedList":"stackInLinkedList/index.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -460,7 +469,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60969" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62297" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -635,5 +644,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/algorithmsInJs.e31bb0bc.js.map
